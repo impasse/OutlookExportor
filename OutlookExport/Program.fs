@@ -24,7 +24,7 @@ let saveMailItem (item:MailItem) =
     File.WriteAllText(path, item.HTMLBody) |> ignore
     for attachment in item.Attachments do
         printfn "Processing attachment %A" attachment.FileName
-        let savePath = Path.GetFullPath(Path.Combine("Attachments", attachment.FileName))
+        let savePath = Path.GetFullPath(Path.Combine("Attachments", safeFilename(attachment.FileName)))
         attachment.SaveAsFile(savePath)
  
 
